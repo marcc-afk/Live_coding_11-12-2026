@@ -17,23 +17,24 @@ public class Livecoding_11122026 {
      */
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        int num = input.nextInt();
+         
+        input.useDelimiter("[//a,]-");
+        int firstnumber = input.nextInt();
+        int secondnumber = input.nextInt();
         
-        if(num < 0){
-            System.out.println("negative numbers is not allowed. ");
-        }else{
-            System.out.println(sumOfDigits(num));
+        if(firstnumber < 0 || secondnumber < 0){
+            System.out.println("negative number is not allowed. ");
+        }else if (firstnumber == 0 && secondnumber == 0){
+            System.out.println(" GCD is undefined. ");
+        }else {
+            System.out.println(gcd(firstnumber, secondnumber));
         }
         input.close();
     }
-    static int sumOfDigits(int num){
-        
-        if (num == 0 ){
-            return 0;
+    static int gcd(int a, int b){
+        if (b == 0){
+            return a;
         }
-        int lastDigit = num % 10;
-         int remainingDigits = num / 10;
-         return lastDigit + sumOfDigits(remainingDigits);
-         
+        return gcd(b, a % b);
     }
 }
